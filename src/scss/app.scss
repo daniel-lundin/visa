@@ -3,7 +3,6 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  background: #88a;
 }
 
 section {
@@ -13,12 +12,13 @@ section {
   right: 0;
   left: 0;
   opacity: 0;
-  //background: #eee;
+  background: #eee;
   -webkit-transform: translateX(-10000px);
 
   h1,
   h2,
   h3 {
+    margin-top: 5vh;
     text-align: center;
   }
 
@@ -36,14 +36,13 @@ section {
 
   ul {
     font-size: 5vh;
-    list-style: disc inside;
+    list-style: none;
   }
-}
 
-.bullet-list {
-  margin: 0 auto;
-  font-size: 10vh;
-  text-align: center;
+  p {
+    font-size: 5vh;
+    text-align: center;
+  }
 }
 
 .v-align {
@@ -52,4 +51,42 @@ section {
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+}
+
+.agenda-box {
+  font-size: 20px;
+  display: inline-block;
+  width: 50%;
+  margin: 0 4%;
+  height: 60vh;
+  background: #733;
+  color: #eee;
+  border-radius: 3vh;
+
+  > ul {
+    margin-left: 5vh;
+  }
+
+
+  .snabbt-header {
+    text-align: center;
+    font-size: 10vh;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.me-slide {
+
+  img {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .twitter-handle {
+    font-family: Arial;
+  }
 }

@@ -9,35 +9,43 @@
   var vh = window.innerHeight / 100;
 
   window.slideController = {
+    eventListeners: {},
+    eventNames: {
+      ENTER: 'enter',
+      LEAVE: 'leave',
+      KEYDOWN: 'keydown'
+    },
+
     init: function() {
       this.slides = document.getElementsByTagName('section');
-      this.currentSlide = 0;
+      this.currentSlide = this.getSlideFromHash();
       this.setupEventListeners();
-
       this.slideInLeft(this.currentSlide);
+    },
+
+    addEventListener: function(slideName, eventName, eventListener) {
+      if(this.eventListeners[slideName] === undefined)
+        this.eventListeners[slideName] = {};
+      if(this.eventListeners[slideName][eventName] === undefined)
+        this.eventListeners[slideName][eventName] = [];
+
+      this.eventListeners[slideName][eventName].push(eventListener);
+
     },
 
     slideInLeft: function(index) {
       this.slides[index].style.opacity = '1';
       snabbt(this.slides[index], {
-        //fromPosition: [-100*vw, 0, 0],
+        fromPosition: [-100*vw, 0, 0],
         position: [0, 0, 0],
-        //fromRotation: [0, -Math.PI, 0],
-        rotation: [0, 0, 0],
-        perspective: 50*vw,
-        transformOrigin: [-50*vw, 0, 0],
         easing: 'ease'
       });
     },
 
     slideOutLeft: function(index) {
       snabbt(this.slides[index], {
-        //fromPosition: [0, 0, 0],
+        fromPosition: [0, 0, 0],
         position: [-100*vw, 0, 0],
-        rotation: [0, -Math.PI, 0],
-        //fromRotation: [0, 0, 0],
-        perspective: 50*vw,
-        transformOrigin: [-50*vw, 0, 0],
         easing: 'ease'
       });
     },
@@ -46,23 +54,15 @@
       this.slides[index].style.opacity = 1;
       snabbt(this.slides[index], {
         position: [0, 0, 0],
-        //fromPosition: [100*vw, 0, 0],
-        //fromRotation: [0, Math.PI, 0],
-        rotation: [0, 0, 0],
-        perspective: 50*vw,
-        transformOrigin: [50*vw, 0, 0],
+        fromPosition: [100*vw, 0, 0],
         easing: 'ease'
       });
     },
 
     slideOutRight: function(index) {
       snabbt(this.slides[index], {
-        //fromPosition: [0, 0, 0],
+        fromPosition: [0, 0, 0],
         position: [100*vw, 0, 0],
-        //fromRotation: [0, 0, 0],
-        rotation: [0, Math.PI, 0],
-        perspective: 50*vw,
-        transformOrigin: [50*vw, 0, 0],
         easing: 'ease'
       });
     },
@@ -73,6 +73,9 @@
 
       this.slideInLeft(this.currentSlide - 1);
       this.slideOutRight(this.currentSlide);
+
+      this.triggerEvent(this.currentSlide - 1, this.eventNames.ENTER);
+      this.triggerEvent(this.currentSlide, this.eventNames.LEAVE);
       this.currentSlide--;
     },
 
@@ -82,30 +85,69 @@
 
       this.slideInRight(this.currentSlide + 1);
       this.slideOutLeft(this.currentSlide);
+
+      this.triggerEvent(this.currentSlide + 1, this.eventNames.ENTER);
+      this.triggerEvent(this.currentSlide, this.eventNames.LEAVE);
       this.currentSlide++;
     },
 
     setupEventListeners: function() {
       document.addEventListener('keydown', function(event) {
-        console.log(event);
         if(event.keyCode === 37) {
           this.gotoPrevious();
         }
         if(event.keyCode === 39) {
           this.gotoNext();
         }
+        this.updateHash();
       }.bind(this));
+    },
+
+    triggerEvent: function(slideIndex, eventName, data) {
+      var slideName = this.slides[slideIndex].getAttribute('data-slide-name');
+
+      if(this.eventListeners[slideName] === undefined) {
+        return;
+      }
+
+      if(this.eventListeners[slideName][eventName] === undefined) {
+        return;
+      }
+
+      this.eventListeners[slideName][eventName].forEach(function(listener) {
+        listener(data);
+      });
+    },
+
+    updateHash: function() {
+      window.location.hash = this.currentSlide;
+    },
+
+    getSlideFromHash: function() {
+      try {
+        var slideNumber = window.location.hash.substr(1);
+        return parseInt(slideNumber, 10);
+      } catch(e) {
+        return 0;
+      }
     }
+
   };
 
   document.addEventListener('DOMContentLoaded', function() {
     window.slideController.init();
+
+    window.slideController.addEventListener('agenda', 'enter', function() {
+      console.log('agenda enter');
+    });
+
   });
 
   window.addEventListener('resize', function() {
     var vw = window.innerWidth / 100;
     var vh = window.innerHeight / 100;
   });
+
 
 
 }(window, document));

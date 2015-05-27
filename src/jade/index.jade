@@ -27,7 +27,7 @@ html
     else
       link(href="css/app-#{version}.min.css", type="text/css", rel="stylesheet")
   body
-    section
+    section(data-slide-name="start")
       .v-align
         h1 snabbt.js
         h2 
@@ -35,19 +35,36 @@ html
 
         h3 Daniel Lundin @danielundin
 
-    section
+    section.me-slide(data-slide-name="me")
+      h2 ME
       .v-align
-        h1 Agenda
-        ul.bullet-list
-          li FPS
-          li Browser rendering
-          li Layout thrashing
+        img(src="assets/images/netlight-purple.png")
 
-    section
+        p.twitter-handle @danielundin
+        p github.com/daniel-lundin
+
+    section(data-slide-name="agenda")
+      h2 Agenda
       .v-align
-        h2 Slide 3
+        
+        .flex
+          .agenda-box
+            h3 Part 1
+            ul
+              li Framerates
+              li Browser rendering
+              li Layout thrashing
 
-    section
+          .agenda-box
+            h3 Part 2
+            .snabbt-header snabbt.js
+
+    section(data-slide-name="fps")
+      h2 Framerates
+      .v-align
+        p 60 FPS ~= 16.66667ms / FRAME
+
+    section(data-slide-name="domtopixel")
       .v-align
         h2 Slide 4
 
