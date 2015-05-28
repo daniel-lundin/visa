@@ -9,7 +9,8 @@ module.exports = function(grunt) {
     buildFolder: 'dist',
     livereload: 9001,
     jsLibFiles: [
-      'bower_components/snabbt.js/snabbt.min.js'
+      'bower_components/snabbt.js/snabbt.min.js',
+      'bower_components/prism/prism.js'
     ],
     jsFiles: [
       'app.js'

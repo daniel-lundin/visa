@@ -20,7 +20,7 @@ html
       }
 
     link(href="assets/css/normalize.css", type="text/css", rel="stylesheet")
-    link(href="assets/css/skeleton.css", type="text/css", rel="stylesheet")
+    //link(href="assets/css/skeleton.css", type="text/css", rel="stylesheet")
 
     if develop
       link(href="css/app.css", type="text/css", rel="stylesheet")
@@ -30,10 +30,9 @@ html
     section(data-slide-name="start")
       .v-align
         h1 snabbt.js
-        h2 
+        h2
           em The minimalistic animation library
 
-        h3 Daniel Lundin @danielundin
 
     section.me-slide(data-slide-name="me")
       h2 ME
@@ -46,14 +45,13 @@ html
     section(data-slide-name="agenda")
       h2 Agenda
       .v-align
-        
         .flex
           .agenda-box
             h3 Part 1
             ul
-              li Framerates
-              li Browser rendering
-              li Layout thrashing
+              li.fragment Framerates
+              li.fragment Browser rendering
+              li.fragment Layout thrashing
 
           .agenda-box
             h3 Part 2
@@ -66,7 +64,43 @@ html
 
     section(data-slide-name="domtopixel")
       .v-align
-        h2 Slide 4
+        h2 DOM to pixel
+        pre
+          code.language-javascript snabbt({
+            |  position: [100, 100, 0]
+            |})
+
+    section(data-slide-name="domtopixel")
+      .v-align
+        h2 Layout thrashing
+        pre
+          code.language-javascript snabbt({
+            |  position: [100, 100, 0]
+            |})
+
+    section(data-slide-name="snabbt")
+      h3 snabbt.js in one slide
+      .v-align
+        p Move DOM elements from one state* to another
+        p *State:
+        ul
+          li transform (position, rotation, scale, skew)
+          li opacity
+
+    section(data-slide-name="snabbt")
+      .v-align
+        h2 what is snabbt.js?
+        p Matrix multiplication library
+        p Tweener
+        p +Rocketsauce
+
+    section(data-slide-name="snabbt")
+      .v-align
+        h2 What it isn't
+        p 
+        p Tweener
+        p +Rocketsauce
+
 
     if develop
       each jsFile in jsLibFiles

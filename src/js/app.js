@@ -8,6 +8,7 @@
   var vw = window.innerWidth / 100;
   var vh = window.innerHeight / 100;
 
+
   window.slideController = {
     eventListeners: {},
     eventNames: {
@@ -20,7 +21,20 @@
       this.slides = document.getElementsByTagName('section');
       this.currentSlide = this.getSlideFromHash();
       this.setupEventListeners();
+      console.log(this.currentSlide);
       this.slideInLeft(this.currentSlide);
+      this.updateSlideFragments();
+    },
+
+    updateSlideFragments: function() {
+      this.fragments = this.slides[this.currentSlide].querySelectorAll('.fragment');
+      this.fragments = Array.prototype.slice.call(this.fragments);
+      console.log(this.fragments);
+      this.fragmentCount = this.fragments.length;
+      this.fragmentIndex = 0;
+      this.fragments.forEach(function(fragment) {
+        fragment.style.opacity = '0';
+      });
     },
 
     addEventListener: function(slideName, eventName, eventListener) {
@@ -83,12 +97,22 @@
       if(this.currentSlide === this.slides.length - 1)
         return;
 
+      if(this.fragmentIndex < this.fragmentCount) {
+        snabbt(this.fragments[this.fragmentIndex], {
+          fromOpacity: 0,
+          opacity: 1,
+        });
+        this.fragmentIndex++;
+        return;
+      }
+
       this.slideInRight(this.currentSlide + 1);
       this.slideOutLeft(this.currentSlide);
 
       this.triggerEvent(this.currentSlide + 1, this.eventNames.ENTER);
       this.triggerEvent(this.currentSlide, this.eventNames.LEAVE);
       this.currentSlide++;
+      this.updateSlideFragments();
     },
 
     setupEventListeners: function() {
