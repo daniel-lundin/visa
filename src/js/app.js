@@ -94,8 +94,6 @@
     },
 
     gotoNext: function() {
-      if(this.currentSlide === this.slides.length - 1)
-        return;
 
       if(this.fragmentIndex < this.fragmentCount) {
         snabbt(this.fragments[this.fragmentIndex], {
@@ -105,6 +103,9 @@
         this.fragmentIndex++;
         return;
       }
+
+      if(this.currentSlide === this.slides.length - 1)
+        return;
 
       this.slideInRight(this.currentSlide + 1);
       this.slideOutLeft(this.currentSlide);
@@ -150,7 +151,10 @@
     getSlideFromHash: function() {
       try {
         var slideNumber = window.location.hash.substr(1);
-        return parseInt(slideNumber, 10);
+        var number = parseInt(slideNumber, 10);
+        if(number != number) {
+          return 0;
+        }
       } catch(e) {
         return 0;
       }

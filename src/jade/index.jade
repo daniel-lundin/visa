@@ -65,10 +65,6 @@ html
     section(data-slide-name="domtopixel")
       .v-align
         h2 DOM to pixel
-        pre
-          code.language-javascript snabbt({
-            |  position: [100, 100, 0]
-            |})
 
     section(data-slide-name="domtopixel")
       .v-align
@@ -102,6 +98,16 @@ html
         p +Rocketsauce
 
 
+    section
+      h2 Basic API
+      .v-align
+        pre.code-box.centered.fragment
+          code.language-javascript snabbt(element, animationConfiguration)
+
+        pre.code-box.centered.fragment
+          code.language-javascript snabbt(element, {
+            |  position: [100, 100, 0]
+            |})
     if develop
       each jsFile in jsLibFiles
         script(src="js/#{jsFile}")
