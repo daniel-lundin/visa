@@ -150,11 +150,14 @@
 
     getSlideFromHash: function() {
       try {
+        console.log('hash: ' + window.location.hash);
         var slideNumber = window.location.hash.substr(1);
+        console.log(slideNumber);
         var number = parseInt(slideNumber, 10);
         if(number != number) {
           return 0;
         }
+        return number;
       } catch(e) {
         return 0;
       }

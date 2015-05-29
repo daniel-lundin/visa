@@ -37,6 +37,7 @@ section {
 
   h3 {
     font-size: 8vh;
+    margin-bottom: 0;
   }
 
   ul {
@@ -81,6 +82,14 @@ section {
 
 .flex {
   display: flex;
+
+  .col-50 {
+    width: 50%;
+  }
+}
+
+.padded {
+  padding: 20px;
 }
 
 .me-slide {
@@ -106,3 +115,61 @@ section {
     margin-right: auto;
   }
 }
+
+.centered-text {
+  text-align: center;
+}
+
+.center-50 {
+  width: 50%;
+  margin: 0 auto !important;
+  display: block;
+}
+
+.render-graph {
+  display: flex;
+  margin-top: 10vh;
+
+  .box {
+    position: relative;
+    font-size: 3vh;
+    padding: 2vw;
+    display: inline-block;
+    border-radius: 1vh;
+    color: #eee;
+    width: 25%;
+    text-align: center;
+    margin: 0 1vw;
+    
+    &:nth-child(1) {
+      background: #c33;
+    }
+
+    &:nth-child(2) {
+      background: #105e23;
+    }
+
+    &:nth-child(3) {
+      background: #99830f;
+    }
+
+    &:nth-child(4) {
+      background: #33c;
+    }
+
+    &.strike {
+      &:after {
+        content: " ";
+        background: red;
+        width: 100%;
+        height: 10px;
+        position: absolute;
+        transform: rotateZ(30deg);
+        top: 42%;
+        left: 0;
+      }
+    }
+  }
+}
+
+

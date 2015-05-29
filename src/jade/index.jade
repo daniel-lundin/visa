@@ -46,16 +46,16 @@ html
       h2 Agenda
       .v-align
         .flex
-          .agenda-box
+          .col-50
             h3 Part 1
-            ul
-              li.fragment Framerates
-              li.fragment Browser rendering
-              li.fragment Layout thrashing
+            ul.centered-text
+              li Framerates
+              li Browser rendering
+              li Layout thrashing
 
-          .agenda-box
+          .col-50
             h3 Part 2
-            .snabbt-header snabbt.js
+            p snabbt.js
 
     section(data-slide-name="fps")
       h2 Framerates
@@ -63,8 +63,35 @@ html
         p 60 FPS ~= 16.66667ms / FRAME
 
     section(data-slide-name="domtopixel")
+      h2 DOM to pixel
       .v-align
-        h2 DOM to pixel
+        pre.fragment.code-box.centered
+          code.language-javascript element.style.width = '100px';
+
+        .render-graph
+          .box.fragment Recalculate style
+          .box.fragment Layout
+          .box.fragment Paint
+          .box.fragment Composite layers
+
+        p.fragment Remember: One frame is 16.6667ms!
+
+    section(data-slide-name="domtopixel-2")
+      h2 DOM to pixel
+      .v-align
+        ul
+          li Layout - width, height, padding, margin, display
+          li Paint - color, border-style, visibility, background, text-decoration
+          li Composite layers - transform, opacity
+
+        .render-graph
+          .box Recalculate style
+          .box.strike Layout
+          .box.strike Paint
+          .box Composite layers
+
+        p.fragment Remember: One frame is 16.6667ms!
+
 
     section(data-slide-name="domtopixel")
       .v-align
@@ -73,6 +100,11 @@ html
           code.language-javascript snabbt({
             |  position: [100, 100, 0]
             |})
+
+    section(data-slide-name="part2")
+      .v-align
+        h1 PART 2
+        h2 snabbt.js
 
     section(data-slide-name="snabbt")
       h3 snabbt.js in one slide
@@ -85,10 +117,11 @@ html
 
     section(data-slide-name="snabbt")
       .v-align
+        
         h2 what is snabbt.js?
-        p Matrix multiplication library
-        p Tweener
-        p +Rocketsauce
+        p.fragment Matrix multiplication library
+        p.fragment Tweener
+        p.fragment +Rocketsauce
 
     section(data-slide-name="snabbt")
       .v-align
