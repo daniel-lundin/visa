@@ -1,0 +1,91 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    style.
+      @font-face {
+        font-family: "Raleway";
+        src: url("assets/fonts/Raleway-Regular.ttf");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Raleway";
+        src: url("assets/fonts/Raleway-Light.ttf");
+        font-weight: lighter;
+        font-style: normal;
+      }
+
+    link(href="assets/css/normalize.css", type="text/css", rel="stylesheet")
+
+    if develop
+      link(href="css/app.css", type="text/css", rel="stylesheet")
+    else
+      link(href="css/app-#{version}.min.css", type="text/css", rel="stylesheet")
+  body
+    .header.media-16-6
+      .background-image.media-16-6
+      h1 Parallax with snabbt.js
+
+    h2.para-header
+      .letter M
+      .letter a
+      .letter n
+      .letter u
+      .letter a
+      .letter l
+      .letter &nbsp;
+      .letter m
+      .letter o
+      .letter d
+      .letter e
+      .letter &nbsp;
+      .letter f
+      .letter o
+      .letter r
+      .letter &nbsp;
+      .letter p
+      .letter a
+      .letter r
+      .letter a
+      .letter l
+      .letter l
+      .letter a
+      .letter x
+
+    pre#manual-code-box.code-box.centered.small
+      code.language-javascript
+        | var headerAnimation = snabbt(backgroundImage, {
+        |   position: [0, 200, 0],
+        |   manual: true
+        | });
+        | 
+        | var letterAnimation = snabbt(letters, {
+        |   fromPosition: [200, 0, 0],
+        |   position: [0, 0, 0],
+        |   delay: function(i) {
+        |     return i*50;
+        |   },
+        |   duration: 1000,
+        |   manual: true
+        | });
+        | 
+        | window.addEventListener('scroll', function(event) {
+        |   var scrollTop = window.pageYOffset;
+        |   headerAnimation.setValue(Math.min(scrollTop / backgroundHeight, 1));
+        |   letterAnimation.setValue(scrollTop / (backgroundHeight/2));
+        | });
+
+    if develop
+      each jsFile in jsLibFiles
+        script(src="js/#{jsFile}")
+
+    each jsFile in parallaxJsFiles
+      script(src="js/#{jsFile}")
+
+    if develop
+      script(src="//localhost:9001/livereload.js")
+

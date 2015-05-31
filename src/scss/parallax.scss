@@ -1,0 +1,67 @@
+.header {
+  position: relative;
+  overflow: hidden;
+
+  h1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    color: #eee;
+    text-shadow: 2px 2px 2px #222;
+    font-size: 10vw;
+  }
+
+  .background-image {
+    position: absolute;
+    z-index: 1;
+    background-image: url('../assets/images/jimi_16x6.png');
+    background-size: 100% 100%;
+  }
+}
+
+.para-header {
+  font-size: 5vw;
+  margin-left: 10%;
+
+  .letter {
+    display: inline-block;
+  }
+}
+
+.media-16-6 {
+  padding-bottom: 37.5%;
+  width: 100%;
+}
+
+
+.manual-scroll-panel {
+  height: 80vh;
+  overflow: scroll;
+
+  .manual-content {
+    height: 160vh;
+  }
+
+  .banner {
+    height: 40vh;
+    position: relative;
+
+    .banner-background {
+      background: #33995f;
+      height: 40vh;
+      width: 100%;
+      position: absolute;
+    }
+
+    > h2 {
+      margin: 0;
+      line-height: 40vh;
+      transform: translateZ(1px);
+
+      .letter {
+        display: inline-block;
+      }
+    }
+  }
+}

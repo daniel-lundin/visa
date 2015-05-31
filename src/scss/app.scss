@@ -1,9 +1,14 @@
 @import 'vendor/prism-dark';
 @import 'multi-element';
+@import 'manual-demo';
+@import 'parallax';
 
 body {
   font-family: "Raleway";
   font-weight: lighter;
+}
+
+.presentation-body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;

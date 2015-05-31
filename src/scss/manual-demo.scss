@@ -1,0 +1,31 @@
+
+.manual-scroll-panel {
+  height: 80vh;
+  overflow: scroll;
+
+  .manual-content {
+    height: 160vh;
+  }
+
+  .banner {
+    height: 40vh;
+    position: relative;
+
+    .banner-background {
+      background: #33995f;
+      height: 40vh;
+      width: 100%;
+      position: absolute;
+    }
+
+    > h2 {
+      margin: 0;
+      line-height: 40vh;
+      transform: translateZ(1px);
+
+      .letter {
+        display: inline-block;
+      }
+    }
+  }
+}

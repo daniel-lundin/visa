@@ -26,7 +26,7 @@ html
       link(href="css/app.css", type="text/css", rel="stylesheet")
     else
       link(href="css/app-#{version}.min.css", type="text/css", rel="stylesheet")
-  body
+  body.presentation-body
     section(data-slide-name="start")
       .v-align
         h1 snabbt.js
@@ -177,6 +177,17 @@ html
         p.fragment Tweener
         p.fragment +Rocketsauce
 
+    section
+      h2 Basic API
+      .v-align
+        pre.code-box.centered.fragment
+          code.language-javascript snabbt(element, animationConfiguration)
+
+        pre.code-box.centered.fragment
+          code.language-javascript snabbt(element, {
+            |  position: [100, 100, 0]
+            |})
+
     section(data-slide-name="chaining")
       h2 Chaining
       .v-align
@@ -203,7 +214,8 @@ html
     section(data-slide-name="multi-element-animations")
       h2 Multi-element animations
       .v-align
-        .flex
+        p Animate multiple elements independently with one snabbt-call
+        .flex.fragment
           .col-50
             pre.code-box.small
               code.language-javascript snabbt(elements, {
@@ -226,15 +238,26 @@ html
 
 
     section
-      h2 Basic API
-      .v-align
-        pre.code-box.centered.fragment
-          code.language-javascript snabbt(element, animationConfiguration)
+      h2 Manual mode
 
-        pre.code-box.centered.fragment
-          code.language-javascript snabbt(element, {
-            |  position: [100, 100, 0]
-            |})
+      p Control animations with user input instead of time
+      pre.code-box.centered.small
+        code.language-javascript var animation = snabbt(element, {
+          |   position: [100, 0, 0],
+          |   manual: true
+          | });
+          | 
+          | animation.setValue(eventValue);
+          | 
+          | animation.rollback();
+          | // Or
+          | animation.finish();
+
+    section(data-slide-name="manual-demo")
+      h2 Manual mode
+
+      iframe(src="parallax.html", width="100%", style="height: 70vh", frameborder=0)
+
     if develop
       each jsFile in jsLibFiles
         script(src="js/#{jsFile}")

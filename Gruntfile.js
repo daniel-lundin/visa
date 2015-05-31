@@ -16,7 +16,11 @@ module.exports = function(grunt) {
       'app.js',
       'domtopixel.js',
       'chaining.js',
-      'multi-element-animations.js'
+      'multi-element-animations.js',
+      'manual.js'
+    ],
+    parallaxJsFiles: [
+      'parallax.js'
     ]
   };
 
@@ -41,12 +45,14 @@ module.exports = function(grunt) {
         options: {
           data: {
             jsFiles: config.jsFiles,
+            parallaxJsFiles: config.parallaxJsFiles,
             jsLibFiles: config.jsLibFiles,
             develop: true
           }
         },
         files: {
-          '<%= connectOptions.base %>/index.html': 'src/jade/index.jade'
+          '<%= connectOptions.base %>/index.html': 'src/jade/index.jade',
+          '<%= connectOptions.base %>/parallax.html': 'src/jade/parallax.jade'
         }
       },
       deploy: {
@@ -117,6 +123,12 @@ module.exports = function(grunt) {
           {
             expand: true,
             src: config.jsFiles,
+            dest: '<%= connectOptions.base %>/js',
+            cwd: 'src/js'
+          },
+          {
+            expand: true,
+            src: config.parallaxJsFiles,
             dest: '<%= connectOptions.base %>/js',
             cwd: 'src/js'
           }
