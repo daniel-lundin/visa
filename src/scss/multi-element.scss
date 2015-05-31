@@ -1,0 +1,65 @@
+
+.multi-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  .toggle-ball {
+    position: absolute;
+    width: 10vh;
+    height: 10vh;
+    background: #333;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 8vh;
+    line-height: 10vh;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .ball {
+    position: absolute;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 100%;
+
+    &:nth-child(1) {
+      background: #db5c62;
+    }
+
+    &:nth-child(2) {
+      background: #c9203f;
+    }
+
+    &:nth-child(3) {
+      background: #bf3105
+    }
+
+    &:nth-child(4) {
+      background: #db5c62;
+    }
+
+    &:nth-child(5) {
+      background: #c9203f;
+    }
+
+    &:nth-child(6) {
+      background: #bf3105
+    }
+
+    &:nth-child(7) {
+      background: #db5c62;
+    }
+
+    &:nth-child(8) {
+      background: #c9203f;
+    }
+
+    &:nth-child(9) {
+      background: #bf3105
+    }
+
+
+  }
+}
+ 

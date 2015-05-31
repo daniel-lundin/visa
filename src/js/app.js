@@ -1,4 +1,4 @@
-(function(window, document, undefined) {
+(function(window, document, snabbt, undefined) {
   'use strict';
 
   var directions = {
@@ -88,8 +88,8 @@
       this.slideInLeft(this.currentSlide - 1);
       this.slideOutRight(this.currentSlide);
 
-      this.triggerEvent(this.currentSlide - 1, this.eventNames.ENTER);
-      this.triggerEvent(this.currentSlide, this.eventNames.LEAVE);
+      this.triggerEvent(this.currentSlide - 1, this.eventNames.ENTER, this.slides[this.currentSlide - 1]);
+      this.triggerEvent(this.currentSlide, this.eventNames.LEAVE, this.slides[this.currentSlide]);
       this.currentSlide--;
     },
 
@@ -110,8 +110,8 @@
       this.slideInRight(this.currentSlide + 1);
       this.slideOutLeft(this.currentSlide);
 
-      this.triggerEvent(this.currentSlide + 1, this.eventNames.ENTER);
-      this.triggerEvent(this.currentSlide, this.eventNames.LEAVE);
+      this.triggerEvent(this.currentSlide + 1, this.eventNames.ENTER, this.slides[this.currentSlide + 1]);
+      this.triggerEvent(this.currentSlide, this.eventNames.LEAVE, this.slides[this.currentSlide]);
       this.currentSlide++;
       this.updateSlideFragments();
     },
@@ -124,6 +124,7 @@
         if(event.keyCode === 39) {
           this.gotoNext();
         }
+        this.triggerEvent(this.currentSlide, this.eventNames.KEYDOWN, event.keyCode);
         this.updateHash();
       }.bind(this));
     },
@@ -181,4 +182,4 @@
 
 
 
-}(window, document));
+}(window, document, window.snabbt));

@@ -13,7 +13,10 @@ module.exports = function(grunt) {
       'bower_components/prism/prism.js'
     ],
     jsFiles: [
-      'app.js'
+      'app.js',
+      'domtopixel.js',
+      'chaining.js',
+      'multi-element-animations.js'
     ]
   };
 

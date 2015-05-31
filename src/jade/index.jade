@@ -61,7 +61,12 @@ html
       h2 Framerates
       .v-align
         p 60 FPS ~= 16.66667ms / FRAME
-
+        pre.code-box.centered.fragment
+          code.language-javascript setInterval(func, 1000/60)
+        div.fragment
+          p requestAnimationFrame syncs with refresh rate
+          pre.code-box.centered
+            code.language-javascript requestAnimationFrame(function(time) { /* Do the stuffs */ }); 
     section(data-slide-name="domtopixel")
       h2 DOM to pixel
       .v-align
@@ -69,37 +74,86 @@ html
           code.language-javascript element.style.width = '100px';
 
         .render-graph
-          .box.fragment Recalculate style
-          .box.fragment Layout
-          .box.fragment Paint
-          .box.fragment Composite layers
+          .box.fragment
+            .heading Recalculate style
+          .box.fragment
+            .heading Layout
+          .box.fragment
+            .heading Paint
+          .box.fragment
+            .heading Composite layers
 
-        p.fragment Remember: One frame is 16.6667ms!
+        p.fragment Remember: One frame is 16.6667ms...
 
     section(data-slide-name="domtopixel-2")
       h2 DOM to pixel
       .v-align
-        ul
-          li Layout - width, height, padding, margin, display
-          li Paint - color, border-style, visibility, background, text-decoration
-          li Composite layers - transform, opacity
-
         .render-graph
-          .box Recalculate style
-          .box.strike Layout
-          .box.strike Paint
-          .box Composite layers
+          .box
+            .heading Recalculate style
+          .box
+            .heading Layout
+            ul.render-words
+              .word width
+              .word height
+              .word padding
+              .word margin
+              .word display
+              .word etc
+          .box
+            .heading Paint
+            ul.render-words
+              .word color
+              .word border
+              .word box-shadow
+              .word outline
+              .word border-radius
+              .word etc
+          .box
+            .heading Composite layers
+            ul.render-words
+              .word transform
+              .word opacity
 
-        p.fragment Remember: One frame is 16.6667ms!
+        p.fragment Better chance to fit in one frame
 
 
-    section(data-slide-name="domtopixel")
+    section(data-slide-name="layout-thrashing")
+      h2 Layout thrashing
       .v-align
-        h2 Layout thrashing
-        pre
-          code.language-javascript snabbt({
-            |  position: [100, 100, 0]
-            |})
+        blockquote.centered.fragment
+          | ”Layout Thrashing occurs when JavaScript violently writes, then reads, from the DOM, multiple times causing document reflows.”
+
+        ul.bullet-list.centered.fragment
+          li DOM-write puts DOM in <em>dirty</em> state
+          li DOM-read requires non-<em>dirty</em>
+
+    section(data-slide-name="layout-thrashing-2")
+      h2 Layout thrashing
+      .v-align
+        pre.code-box.centered
+          code.language-javascript  // Read
+            | var h1Size = element1.clientHeight;
+            | // Write (invalidates layout)
+            | element1.style.height = (h1Size * 2) + 'px';
+            | // Read (triggers layout)
+            | var h2Size = element2.clientHeight;
+            | // Write (invalidates layout)
+            | element2.style.height = (h2Size * 2) + 'px';
+
+    section(data-slide-name="layout-thrashing-2")
+      h2 Layout thrashing
+      .v-align
+        pre.code-box.centered
+          code.language-javascript
+            | // Organize reads together
+            | var h1Size = element1.clientHeight;
+            | var h2Size = element2.clientHeight;
+            | 
+            | // Organize writes together
+            | element1.style.height = (h1Size * 2) + 'px';
+            | element2.style.height = (h2Size * 2) + 'px';
+
 
     section(data-slide-name="part2")
       .v-align
@@ -123,12 +177,52 @@ html
         p.fragment Tweener
         p.fragment +Rocketsauce
 
-    section(data-slide-name="snabbt")
+    section(data-slide-name="chaining")
+      h2 Chaining
       .v-align
-        h2 What it isn't
-        p 
-        p Tweener
-        p +Rocketsauce
+        .flex
+          .col-50
+            pre.code-box.small
+              code.language-javascript snabbt(element, {
+                |   position: [100, 0, 0],
+                |   rotation: [0, 0, Math.PI/4]
+                | }).snabbt({
+                |   position: [100, 100, 0],
+                |   rotation: [0, 0, Math.PI/2]
+                | }).snabbt({
+                |   position: [0, 100, 0],
+                |   rotation: [0, 0, 3*Math.PI/4]
+                | }).snabbt({
+                |   position: [0, 100, 0],
+                |   rotation: [0, 0, 0]
+                | });
+
+          .col-50
+            #chaining Chaining
+
+    section(data-slide-name="multi-element-animations")
+      h2 Multi-element animations
+      .v-align
+        .flex
+          .col-50
+            pre.code-box.small
+              code.language-javascript snabbt(elements, {
+                |   position: [200, 0, 0],
+                |   rotationPost: function(i, total) {
+                |     return [0, 0, i/total * 2 * Math.PI];
+                |   }
+                | });
+
+          .col-50.relative
+            .multi-element
+              .ball
+              .ball
+              .ball
+              .ball
+              .ball
+              .ball
+              .ball
+              #multi-element-toggle.toggle-ball ★
 
 
     section
