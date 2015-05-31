@@ -14,9 +14,6 @@
       position: [100, 100, 0],
       rotation: [0, 0, Math.PI/2]
     }).snabbt({
-      position: [0, 100, 0],
-      rotation: [0, 0, 3*Math.PI/4]
-    }).snabbt({
       position: [0, 0, 0],
       rotation: [0, 0, 0]
     });

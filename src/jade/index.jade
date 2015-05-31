@@ -45,17 +45,13 @@ html
     section(data-slide-name="agenda")
       h2 Agenda
       .v-align
-        .flex
-          .col-50
-            h3 Part 1
-            ul.centered-text
-              li Framerates
-              li Browser rendering
-              li Layout thrashing
+        h3 Part 1 - Browser performance
+        ul.centered-text
+          li Framerates
+          li Browser rendering
+          li Layout thrashing
 
-          .col-50
-            h3 Part 2
-            p snabbt.js
+        h3 Part 2 - snabbt.js
 
     section(data-slide-name="fps")
       h2 Framerates
@@ -67,6 +63,7 @@ html
           p requestAnimationFrame syncs with refresh rate
           pre.code-box.centered
             code.language-javascript requestAnimationFrame(function(time) { /* Do the stuffs */ }); 
+
     section(data-slide-name="domtopixel")
       h2 DOM to pixel
       .v-align
@@ -160,22 +157,24 @@ html
         h1 PART 2
         h2 snabbt.js
 
-    section(data-slide-name="snabbt")
-      h3 snabbt.js in one slide
+    section(data-slide-name="what is snabbt")
+      h2 what is snabbt.js?
       .v-align
-        p Move DOM elements from one state* to another
-        p *State:
-        ul
-          li transform (position, rotation, scale, skew)
-          li opacity
-
-    section(data-slide-name="snabbt")
-      .v-align
-        
-        h2 what is snabbt.js?
         p.fragment Matrix multiplication library
-        p.fragment Tweener
-        p.fragment +Rocketsauce
+        .fragment
+          p +
+          p Tweener
+        .fragment
+          p + 
+          p Rocket sauce
+
+    section(data-slide-name="what-is-snabbt-2")
+      h2 what is snabbt.js?
+      .v-align
+        p Transition elements between states*
+        p State* = position, rotation, scale, etc. 
+        p
+          #intro-animation
 
     section
       h2 Basic API
@@ -188,28 +187,62 @@ html
             |  position: [100, 100, 0]
             |})
 
+    section
+      h2 Basic API - cont.
+      .v-align
+        pre.code-box.centered.fragment
+          code.language-javascript snabbt(element, {
+            |  position: [0, 0, 0],
+            |  rotation: [0, 0, 0],
+            |  scale: [0, 0, 0],
+            |  skew: [0, 0, 0],
+            |  opacity: 1,
+            |  duration: 500,
+            |  delay: 0,
+            |  easing: 'linear'
+            |});
+
+
+    section(data-slide-name="simple-examples")
+      h2 Simple examples
+        .flex
+          .col-50
+            pre.code-box.centered.small
+              code.language-javascript snabbt(element, {
+                |   position: [200, 0, 0]
+                | });
+            #example1.example-box
+
+            pre.code-box.centered.small
+              code.language-javascript snabbt(element, {
+                |   position: [200, 0, 0]
+                |   rotation: [0, 0, Math.PI]
+                | });
+            #example3.example-box
+
+          .col-50
+            pre.code-box.centered.small
+              code.language-javascript snabbt(element, {
+                |   rotation: [0, 0, Math.PI]
+                | });
+            #example2.example-box
+
     section(data-slide-name="chaining")
       h2 Chaining
       .v-align
-        .flex
-          .col-50
-            pre.code-box.small
-              code.language-javascript snabbt(element, {
-                |   position: [100, 0, 0],
-                |   rotation: [0, 0, Math.PI/4]
-                | }).snabbt({
-                |   position: [100, 100, 0],
-                |   rotation: [0, 0, Math.PI/2]
-                | }).snabbt({
-                |   position: [0, 100, 0],
-                |   rotation: [0, 0, 3*Math.PI/4]
-                | }).snabbt({
-                |   position: [0, 100, 0],
-                |   rotation: [0, 0, 0]
-                | });
+        pre.code-box.small.centered
+          code.language-javascript snabbt(element, {
+            |   position: [100, 0, 0],
+            |   rotation: [0, 0, Math.PI/4]
+            | }).snabbt({
+            |   position: [100, 100, 0],
+            |   rotation: [0, 0, Math.PI/2]
+            | }).snabbt({
+            |   position: [0, 100, 0],
+            |   rotation: [0, 0, 0]
+            | });
 
-          .col-50
-            #chaining Chaining
+        #chaining Chaining
 
     section(data-slide-name="multi-element-animations")
       h2 Multi-element animations
@@ -253,10 +286,20 @@ html
           | // Or
           | animation.finish();
 
+
     section(data-slide-name="manual-demo")
       h2 Manual mode
 
       iframe(src="parallax.html", width="100%", style="height: 70vh", frameborder=0)
+
+    section
+      .v-align
+        h1 Thank you!
+
+        p bower install snabbt.js
+        p npm install snabbt.js
+
+
 
     if develop
       each jsFile in jsLibFiles

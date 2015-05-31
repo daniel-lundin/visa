@@ -17,7 +17,8 @@ module.exports = function(grunt) {
       'domtopixel.js',
       'chaining.js',
       'multi-element-animations.js',
-      'manual.js'
+      'intro.js',
+      'simple-examples.js',
     ],
     parallaxJsFiles: [
       'parallax.js'
@@ -59,12 +60,14 @@ module.exports = function(grunt) {
         options: {
           data: {
             jsFiles: ['app-<%= pkg.version %>.min.js' ],
+            parallaxJsFiles: ['parallax-<%= pkg.version %>.min.js' ],
             develop: false,
             version: '<%= pkg.version %>'
           }
         },
         files: {
-          '<%= buildFolder %>/index.html': 'src/jade/index.jade'
+          '<%= buildFolder %>/index.html': 'src/jade/index.jade',
+          '<%= buildFolder %>/parallax.html': 'src/jade/parallax.jade'
         }
       }
     },
@@ -155,6 +158,15 @@ module.exports = function(grunt) {
             var allFiles = [];
 
             config.jsFiles.forEach(function(f) {
+              allFiles.push('src/js/' + f);
+            });
+
+            return config.jsLibFiles.concat(allFiles);
+          }()),
+          '<%= buildFolder %>/js/parallax-<%= pkg.version %>.min.js': (function() {
+            var allFiles = [];
+
+            config.parallaxJsFiles.forEach(function(f) {
               allFiles.push('src/js/' + f);
             });
 

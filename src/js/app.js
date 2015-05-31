@@ -91,10 +91,14 @@
       this.triggerEvent(this.currentSlide - 1, this.eventNames.ENTER, this.slides[this.currentSlide - 1]);
       this.triggerEvent(this.currentSlide, this.eventNames.LEAVE, this.slides[this.currentSlide]);
       this.currentSlide--;
+      this.updateSlideFragments();
     },
 
     gotoNext: function() {
 
+      console.log('next');
+      console.log(this.fragmentIndex);
+      console.log(this.fragmentCount);
       if(this.fragmentIndex < this.fragmentCount) {
         snabbt(this.fragments[this.fragmentIndex], {
           fromOpacity: 0,
