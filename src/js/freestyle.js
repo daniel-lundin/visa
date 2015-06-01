@@ -1,6 +1,11 @@
 (function(window, snabbt) {
 
+  var initialized = false;
   slideController.addEventListener('freestyle', 'enter', function() {
+    if(initialized)
+      return;
+
+    initialized = true;
     console.log('settings up freestyle demo');
     
     var createPatch = function(element) {
