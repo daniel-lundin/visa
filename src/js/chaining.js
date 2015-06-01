@@ -5,22 +5,21 @@
   var section;
 
   var element = document.getElementById('chaining');
+  var balls = element.querySelectorAll('.ball');
 
   element.addEventListener('click', function() {
-    snabbt(element, {
-      position: [100, 0, 0],
-      rotation: [0, 0, Math.PI/4]
+    snabbt(balls, {
+      position: [300, 0, 0],
+      delay: function(i) {
+        return i * 200;
+      },
     }).snabbt({
-      position: [100, 100, 0],
-      rotation: [0, 0, Math.PI/2]
+      position: [300, 300, 0],
+    }).snabbt({
+      position: [0, 300, 0],
     }).snabbt({
       position: [0, 0, 0],
-      rotation: [0, 0, 0]
     });
-  });
-  window.slideController.addEventListener('chaining', 'enter', function(eventSection) {
-    console.log('chaining enter');
-
   });
 
 })(window, document, window.snabbt);

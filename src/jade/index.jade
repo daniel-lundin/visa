@@ -65,7 +65,7 @@ html
             code.language-javascript requestAnimationFrame(function(time) { /* Do the stuffs */ }); 
 
     section(data-slide-name="domtopixel")
-      h2 DOM to pixel
+      h2 Rendering pipeline
       .v-align
         pre.fragment.code-box.centered
           code.language-javascript element.style.width = '100px';
@@ -83,7 +83,7 @@ html
         p.fragment Remember: One frame is 16.6667ms...
 
     section(data-slide-name="domtopixel-2")
-      h2 DOM to pixel
+      h2 Rendering pipeline
       .v-align
         .render-graph
           .box
@@ -157,7 +157,15 @@ html
         h1 PART 2
         h2 snabbt.js
 
-    section(data-slide-name="what is snabbt")
+    section(data-slide-name="why-snabbt")
+      .v-align
+        h2 why snabbt.js?
+
+        p.fragment Famo.us, Velocity.js, GSAP
+        p.fragment Only allow things browsers can render cheaply
+        p.fragment Room for a lightweight library that is not a framework
+
+    section(data-slide-name="what-is-snabbt")
       h2 what is snabbt.js?
       .v-align
         p.fragment Matrix multiplication library
@@ -169,12 +177,19 @@ html
           p Rocket sauce
 
     section(data-slide-name="what-is-snabbt-2")
-      h2 what is snabbt.js?
+      h2 What is snabbt.js?
       .v-align
         p Transition elements between states*
-        p State* = position, rotation, scale, etc. 
+        p State* = transform + opacity
         p
           #intro-animation
+
+    section(data-slide-name="what-is-snabbt-2")
+      h2 Limitations
+      .v-align
+        p No unit conversions or relative values
+        p No arbitrary propery animations, just transform + opacity
+        p Modern browsers only (IE10+) 
 
     section
       h2 Basic API
@@ -188,8 +203,8 @@ html
             |})
 
     section
-      h2 Basic API - cont.
       .v-align
+        h2 Basic API - cont.
         pre.code-box.centered.fragment
           code.language-javascript snabbt(element, {
             |  position: [0, 0, 0],
@@ -227,22 +242,40 @@ html
                 | });
             #example2.example-box
 
+    section(data-slide-name="easings")
+      .v-align
+        h2 Easings
+        p ease - easeIn - easeOut
+        p#spring-easing spring easing - Physics based spring model
+        p.fragment Easy to extend with own easings
+
     section(data-slide-name="chaining")
       h2 Chaining
       .v-align
-        pre.code-box.small.centered
-          code.language-javascript snabbt(element, {
-            |   position: [100, 0, 0],
-            |   rotation: [0, 0, Math.PI/4]
-            | }).snabbt({
-            |   position: [100, 100, 0],
-            |   rotation: [0, 0, Math.PI/2]
-            | }).snabbt({
-            |   position: [0, 100, 0],
-            |   rotation: [0, 0, 0]
-            | });
+        .flex
+          .col-50
+            pre.code-box.small.centered
+              code.language-javascript 
+                | snabbt(balls, {
+                |   position: [300, 0, 0],
+                |   delay: function(i) {
+                |     return i * 200;
+                |   },
+                | }).snabbt({
+                |   position: [300, 300, 0],
+                | }).snabbt({
+                |   position: [0, 300, 0],
+                | }).snabbt({
+                |   position: [0, 0, 0],
+                | });
 
-        #chaining Chaining
+          .col-50
+            #chaining
+              .ball
+              .ball
+              .ball
+              .ball
+              .ball
 
     section(data-slide-name="multi-element-animations")
       h2 Multi-element animations
@@ -273,24 +306,42 @@ html
     section
       h2 Manual mode
 
-      p Control animations with user input instead of time
-      pre.code-box.centered.small
-        code.language-javascript var animation = snabbt(element, {
-          |   position: [100, 0, 0],
-          |   manual: true
-          | });
-          | 
-          | animation.setValue(eventValue);
-          | 
-          | animation.rollback();
-          | // Or
-          | animation.finish();
+      .v-align
+        p Control animations with user input instead of time
+        .flex
+          .col-50
+            pre.code-box.centered.small
+              code.language-javascript var animation = snabbt(element, {
+                |   position: [100, 0, 0],
+                |   manual: true
+                | });
+                | 
+                | animation.setValue(eventValue);
+                | 
+                | animation.rollback();
+                | // Or
+                | animation.finish();
 
+          .col-50
+            #flipper-drag.flip-container
+              #flipper-background.flipper-background Peek-a-boo!
+              #flipper.flipper
+                .flipper-front Drag to flip!
+                .flipper-back Flip me back!
 
     section(data-slide-name="manual-demo")
       h2 Manual mode
 
       iframe(src="parallax.html", width="100%", style="height: 70vh", frameborder=0)
+
+
+    section(data-slide-name="freestyle")
+      h2 Freestyle mode
+
+      p Use matrix operations outside snabbt's tweener
+
+      #touch-area
+        #patch-container
 
     section
       .v-align

@@ -10,7 +10,8 @@ module.exports = function(grunt) {
     livereload: 9001,
     jsLibFiles: [
       'bower_components/snabbt.js/snabbt.min.js',
-      'bower_components/prism/prism.js'
+      'bower_components/prism/prism.js',
+      'bower_components/hammer.js/hammer.js'
     ],
     jsFiles: [
       'app.js',
@@ -19,6 +20,9 @@ module.exports = function(grunt) {
       'multi-element-animations.js',
       'intro.js',
       'simple-examples.js',
+      'easings.js',
+      'manual.js',
+      'freestyle.js'
     ],
     parallaxJsFiles: [
       'parallax.js'
@@ -176,13 +180,6 @@ module.exports = function(grunt) {
       }
     },
 
-    open : {
-      dev : {
-        path: 'http://<%= connectOptions.hostname %>:<%= connectOptions.port %>/index.html',
-        app: 'Google Chrome'
-      }
-    },
-
     watch: {
       livereload: {
         options: {
@@ -218,8 +215,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-scss-lint');
-  grunt.loadNpmTasks('grunt-open');
 
-  grunt.registerTask('develop', ['clean:develop', 'jade:develop', 'sass:develop', 'jshint', 'copy:develop', 'connect', 'open', 'watch']);
+  grunt.registerTask('develop', ['clean:develop', 'jade:develop', 'sass:develop', 'jshint', 'copy:develop', 'connect', 'watch']);
   grunt.registerTask('build', ['clean:deploy', 'jade:deploy', 'sass:deploy', 'jshint', 'uglify', 'copy:deploy']);
 };

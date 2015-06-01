@@ -2,6 +2,8 @@
 @import 'multi-element';
 @import 'manual-demo';
 @import 'parallax';
+@import 'flipper';
+@import 'freestyle';
 
 body {
   font-family: "Raleway";
@@ -207,15 +209,42 @@ blockquote {
 }
 
 #chaining {
-  background: #339;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 5vh;
-  padding: 2vh;
-  cursor: pointer;
-  width: 20vw;
-  margin: 2vh auto 0;
-  text-align: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
+
+  .ball {
+    position: absolute;
+    background: #339;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+
+    &:nth-child(1) {
+      background: #c33;
+    }
+
+    &:nth-child(2) {
+      background: #105e23;
+    }
+
+    &:nth-child(3) {
+      background: #99830f;
+    }
+
+    &:nth-child(4) {
+      background: #33c;
+    }
+
+  }
+  //border-radius: 10px;
+  //color: #fff;
+  //font-size: 5vh;
+  //padding: 2vh;
+  //cursor: pointer;
+  //width: 20vw;
+  //margin: 2vh auto 0;
+  //text-align: center;
 }
 
 .relative {
@@ -241,4 +270,8 @@ blockquote {
   background: #33c;
   margin-left: 5vh;
   transform: translateZ(0);
+}
+
+#spring-easing {
+  opacity: 0;
 }
