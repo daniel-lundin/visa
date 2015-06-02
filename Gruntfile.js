@@ -22,7 +22,8 @@ module.exports = function(grunt) {
       'simple-examples.js',
       'easings.js',
       'manual.js',
-      'freestyle.js'
+      'freestyle.js',
+      'spring.js'
     ],
     parallaxJsFiles: [
       'parallax.js'

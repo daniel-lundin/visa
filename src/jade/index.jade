@@ -58,7 +58,7 @@ html
       .v-align
         p Most common 60 FPS ~= 16.66667ms / FRAME
         pre.code-box.centered.fragment
-          code.language-javascript setInterval(func, 1000/60)
+          code.language-javascript setInterval(func, 1000/60);
         div.fragment
           p requestAnimationFrame syncs with refresh rate
           pre.code-box.centered
@@ -205,17 +205,42 @@ html
     section
       .v-align
         h2 Basic API - cont.
-        pre.code-box.centered.fragment
-          code.language-javascript snabbt(element, {
-            |  position: [0, 0, 0],
-            |  rotation: [0, 0, 0],
-            |  scale: [0, 0, 0],
-            |  skew: [0, 0, 0],
-            |  opacity: 1,
-            |  duration: 500,
-            |  delay: 0,
-            |  easing: 'linear'
-            |});
+        //h3 Animation configuration
+        //ul.bullet-list.centered
+          li position: [0, 0, 0]
+          li rotation: [0, 0, 0]
+          li scale: [0, 0]
+          li skew: [0, 0]
+          li opacity: [0, 0]
+          li duration: 500
+          li delay: 500
+          li easing: 'linear'
+        .flex
+          .col-50
+            pre.code-box.centered.fragment.small
+              code.language-javascript snabbt(element, {
+                |  position: [0, 0, 0],
+                |  rotation: [0, 0, 0],
+                |  rotationPost: [0, 0, 0],
+                |  scale: [0, 0],
+                |  scalePost: [0, 0],
+                |  skew: [0, 0],
+                |  opacity: 1,
+                |  duration: 500,
+                |  delay: 0,
+                |  easing: 'linear'
+                |});
+          .col-50
+            pre.code-box.centered.fragment.small
+              code.language-javascript snabbt(element, {
+                |  fromPosition: [0, 0, 0],
+                |  fromRotation: [0, 0, 0],
+                |  fromRotationPost: [0, 0, 0],
+                |  fromScale: [0, 0, 0],
+                |  fromScalePost: [0, 0, 0],
+                |  fromSkew: [0, 0, 0],
+                |  fromOpacity: 1
+                |});
 
 
     section(data-slide-name="simple-examples")
@@ -245,37 +270,50 @@ html
     section(data-slide-name="easings")
       .v-align
         h2 Easings
-        p ease - easeIn - easeOut
+        p <span id="ease" class="ease-word">ease</span> - <span id="ease-in" class="ease-word">easeIn</span> - <span id="ease-out" class="ease-word">easeOut</span>
         p#spring-easing spring easing - Physics based spring model
         p.fragment Easy to extend with own easings
 
+    //section(data-slide-name="spring")
+    //  .v-align
+    //    h2 Spring easing
+    //    pre.code-box.centered.small
+    //      code.language-javascript snabbt(element, {
+    //        |   position: [100, 0, 0]
+    //        |   easing: 'spring',
+    //        |   springConstant: 0.4,
+    //        |   springDeceleration: 0.8,
+    //        | });
+
+    //    p#spring-easing-example Spring
+
     section(data-slide-name="chaining")
       h2 Chaining
-      .v-align
-        .flex
-          .col-50
-            pre.code-box.small.centered
-              code.language-javascript 
-                | snabbt(balls, {
-                |   position: [300, 0, 0],
-                |   delay: function(i) {
-                |     return i * 200;
-                |   },
-                | }).snabbt({
-                |   position: [300, 300, 0],
-                | }).snabbt({
-                |   position: [0, 300, 0],
-                | }).snabbt({
-                |   position: [0, 0, 0],
-                | });
+      p Run animations in sequence
+      //.v-align
+      .flex
+        .col-50
+          pre.code-box.small.centered
+            code.language-javascript snabbt(balls, {
+              |   position: [300, 0, 0],
+              |   delay: function(i) {
+              |     return i * 200;
+              |   },
+              | }).snabbt({
+              |   position: [300, 300, 0],
+              | }).snabbt({
+              |   position: [0, 300, 0],
+              | }).snabbt({
+              |   position: [0, 0, 0],
+              | });
 
-          .col-50
-            #chaining
-              .ball
-              .ball
-              .ball
-              .ball
-              .ball
+        .col-50
+          #chaining
+            .ball
+            .ball
+            .ball
+            .ball
+            .ball
 
     section(data-slide-name="multi-element-animations")
       h2 Multi-element animations

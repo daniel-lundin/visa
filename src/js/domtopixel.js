@@ -13,7 +13,7 @@
 
   window.slideController.addEventListener('domtopixel-2', 'keydown', (function() {
     return function(data) {
-      if(data === 32) {
+      if(data === 32 || data === 13) {
         switch(eventCount) {
           case 0:
             var boxes = section.querySelectorAll('.render-graph .box');
