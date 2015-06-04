@@ -131,6 +131,14 @@
         this.triggerEvent(this.currentSlide, this.eventNames.KEYDOWN, event.keyCode);
         this.updateHash();
       }.bind(this));
+
+      document.getElementsByClassName('nav-left')[0].addEventListener('click', function() {
+        this.gotoPrevious();
+      }.bind(this));
+
+      document.getElementsByClassName('nav-right')[0].addEventListener('click', function() {
+        this.gotoNext();
+      }.bind(this));
     },
 
     triggerEvent: function(slideIndex, eventName, data) {
@@ -166,8 +174,19 @@
       } catch(e) {
         return 0;
       }
-    }
+    },
 
+    handleResize: function() {
+      var me = this;
+      for (var i=0; i<this.slides.length; ++i) {
+        if (i === this.currentSlide)
+          return;
+
+        snabbt(this.slides[i], {
+          position: [100*vw, 0, 0]
+        });
+      }
+    }
   };
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -179,9 +198,15 @@
 
   });
 
+  var resizeTimeout;
   window.addEventListener('resize', function() {
-    var vw = window.innerWidth / 100;
-    var vh = window.innerHeight / 100;
+    window.clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(function() {
+      console.log('resize');
+      vw = window.innerWidth / 100;
+      vh = window.innerHeight / 100;
+      slideController.handleResize();
+    }, 100);
   });
 
 
