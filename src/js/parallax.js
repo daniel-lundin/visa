@@ -7,7 +7,7 @@
   var backgroundHeight = backgroundImage.clientHeight;
 
   var headerAnimation = snabbt(backgroundImage, {
-    position: [0, 200, 0],
+    position: [0, backgroundHeight/2, 0],
     manual: true
   });
 

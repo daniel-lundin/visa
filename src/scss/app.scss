@@ -12,8 +12,9 @@ body {
 
 .nav {
   position: fixed;
-  top: 0;
+  bottom: 8vw;
   z-index: 2;
+  -webkit-transform: translateZ(100px);
 
   &:before {
     content: "";
@@ -49,7 +50,7 @@ body {
   //height: 100vh;
   overflow: hidden;
   //position: relative;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
