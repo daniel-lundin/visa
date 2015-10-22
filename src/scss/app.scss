@@ -1,9 +1,4 @@
 @import 'vendor/prism-dark';
-@import 'multi-element';
-@import 'manual-demo';
-@import 'parallax';
-@import 'flipper';
-@import 'freestyle';
 
 body {
   font-family: "Raleway";
@@ -46,10 +41,7 @@ body {
 }
 
 .presentation-body {
-  //width: 100vw;
-  //height: 100vh;
   overflow: hidden;
-  //position: relative;
   position: fixed;
   top: 0;
   left: 0;
@@ -143,19 +135,6 @@ section {
   padding: 20px;
 }
 
-.me-slide {
-
-  img {
-    width: 50%;
-    margin: 0 auto;
-    display: block;
-  }
-
-  .twitter-handle {
-    font-family: Arial;
-  }
-}
-
 .code-box {
   font-size: 4vh;
   margin-bottom: 1vh;
@@ -180,53 +159,6 @@ section {
   margin: 0 auto !important;
   display: block;
 }
-
-.render-graph {
-  display: flex;
-  display: -webkit-flex;
-  margin-top: 10vh;
-
-  .box {
-    position: relative;
-    font-size: 3vh;
-    padding: 2vw;
-    display: inline-block;
-    border-radius: 1vh;
-    color: #eee;
-    width: 25%;
-    text-align: center;
-    margin: 0 1vw;
-    max-height: 30vh;
-    overflow: hidden;
-    
-    .heading {
-      font-size: 4vh;
-    }
-
-    &:nth-child(1) {
-      background: #c33;
-    }
-
-    &:nth-child(2) {
-      background: #105e23;
-    }
-
-    &:nth-child(3) {
-      background: #99830f;
-    }
-
-    &:nth-child(4) {
-      background: #33c;
-    }
-  }
-
-  .render-words {
-    position: relative;
-    padding: 0;
-    font-size: 3vh;
-  }
-}
-
 blockquote {
   font-size: 5vh;
   font-style: italic;
@@ -249,83 +181,4 @@ blockquote {
     width: 60%;
     margin: 0 auto;
   }
-}
-
-#chaining {
-  position: relative;
-  width: 300px;
-  height: 300px;
-
-  .ball {
-    position: absolute;
-    background: #339;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-
-    &:nth-child(1) {
-      background: #c33;
-    }
-
-    &:nth-child(2) {
-      background: #105e23;
-    }
-
-    &:nth-child(3) {
-      background: #99830f;
-    }
-
-    &:nth-child(4) {
-      background: #33c;
-    }
-
-  }
-  //border-radius: 10px;
-  //color: #fff;
-  //font-size: 5vh;
-  //padding: 2vh;
-  //cursor: pointer;
-  //width: 20vw;
-  //margin: 2vh auto 0;
-  //text-align: center;
-}
-
-.relative {
-  position: relative;
-}
-
-#intro-animation {
-  width: 100px;
-  height: 100px;
-  background: #f0f;
-  margin: 0 auto;
-}
-
-.simple-examples {
-  width: 400px;
-  margin: 0 auto;
-
-}
-
-.example-box {
-  width: 100px;
-  height: 100px;
-  background: #33c;
-  margin-left: 5vh;
-  transform: translateZ(0);
-}
-
-#spring-easing {
-  opacity: 0;
-}
-
-#spring-easing-example {
-  font-size: 6vh;
-  background: #955;
-  width: 30vw;
-  margin: 0 auto;
-}
-
-.ease-word {
-  display: inline-block;
 }

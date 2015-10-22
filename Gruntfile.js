@@ -15,18 +15,6 @@ module.exports = function(grunt) {
     ],
     jsFiles: [
       'app.js',
-      'domtopixel.js',
-      'chaining.js',
-      'multi-element-animations.js',
-      'intro.js',
-      'simple-examples.js',
-      'easings.js',
-      'manual.js',
-      'freestyle.js',
-      'spring.js'
-    ],
-    parallaxJsFiles: [
-      'parallax.js'
     ]
   };
 
@@ -51,28 +39,24 @@ module.exports = function(grunt) {
         options: {
           data: {
             jsFiles: config.jsFiles,
-            parallaxJsFiles: config.parallaxJsFiles,
             jsLibFiles: config.jsLibFiles,
             develop: true
           }
         },
         files: {
           '<%= connectOptions.base %>/index.html': 'src/jade/index.jade',
-          '<%= connectOptions.base %>/parallax.html': 'src/jade/parallax.jade'
         }
       },
       deploy: {
         options: {
           data: {
             jsFiles: ['app-<%= pkg.version %>.min.js' ],
-            parallaxJsFiles: ['parallax-<%= pkg.version %>.min.js' ],
             develop: false,
             version: '<%= pkg.version %>'
           }
         },
         files: {
           '<%= buildFolder %>/index.html': 'src/jade/index.jade',
-          '<%= buildFolder %>/parallax.html': 'src/jade/parallax.jade'
         }
       }
     },
@@ -133,12 +117,6 @@ module.exports = function(grunt) {
             src: config.jsFiles,
             dest: '<%= connectOptions.base %>/js',
             cwd: 'src/js'
-          },
-          {
-            expand: true,
-            src: config.parallaxJsFiles,
-            dest: '<%= connectOptions.base %>/js',
-            cwd: 'src/js'
           }
         ]
       },
@@ -163,15 +141,6 @@ module.exports = function(grunt) {
             var allFiles = [];
 
             config.jsFiles.forEach(function(f) {
-              allFiles.push('src/js/' + f);
-            });
-
-            return config.jsLibFiles.concat(allFiles);
-          }()),
-          '<%= buildFolder %>/js/parallax-<%= pkg.version %>.min.js': (function() {
-            var allFiles = [];
-
-            config.parallaxJsFiles.forEach(function(f) {
               allFiles.push('src/js/' + f);
             });
 

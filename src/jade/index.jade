@@ -4,7 +4,7 @@ html
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     meta(name="apple-mobile-web-app-capable", content="yes")
-    title snabbt.js
+    title Visa.js
     
 
     style.
@@ -23,7 +23,6 @@ html
       }
 
     link(href="assets/css/normalize.css", type="text/css", rel="stylesheet")
-    //link(href="assets/css/skeleton.css", type="text/css", rel="stylesheet")
 
     if develop
       link(href="css/app.css", type="text/css", rel="stylesheet")
@@ -34,366 +33,36 @@ html
     .nav.nav-right
     section(data-slide-name="start")
       .v-align
-        h1 snabbt.js
+        h1 visa.js
         h2
-          em The minimalistic animation library
+          em Presentation tool
 
 
-    section.me-slide(data-slide-name="me")
+    section(data-slide-name="me")
       h2 Daniel Lundin
       .v-align
-        img(src="assets/images/netlight-purple.png")
-
-        p.twitter-handle @danielundin
-        p github.com/daniel-lundin
+        p github.com/daniel-lundin/visa
 
     section(data-slide-name="agenda")
       h2 Agenda
       .v-align
-        h3 Part 1 - Browser performance
+        h3 Part 1 - Intro
         ul.centered-text
-          li Framerates
-          li Browser rendering
-          li Layout thrashing
+          li Stuff
+          li More stuff
+          li ...
 
-        h3 Part 2 - snabbt.js
+        h3 Part 2 - Profit
 
     section(data-slide-name="fps")
-      h2 Framerates
+      h2 Code
       .v-align
-        p Most common 60 FPS ~= 16.66667ms / FRAME
+        p Show me some code
         pre.code-box.centered.fragment
-          code.language-javascript setInterval(func, 1000/60);
+          code.language-javascript theList.map(function(item) { return item.name; });
         div.fragment
-          p requestAnimationFrame syncs with refresh rate
           pre.code-box.centered
-            code.language-javascript requestAnimationFrame(function(time) { /* Do the stuffs */ }); 
-
-    section(data-slide-name="domtopixel")
-      h2 Rendering pipeline
-      .v-align
-        pre.fragment.code-box.centered
-          code.language-javascript element.style.width = '100px';
-
-        .render-graph
-          .box.fragment
-            .heading Recalculate style
-          .box.fragment
-            .heading Layout
-          .box.fragment
-            .heading Paint
-          .box.fragment
-            .heading Composite layers
-
-        p.fragment Remember: One frame is 16.6667ms...
-
-    section(data-slide-name="domtopixel-2")
-      h2 Rendering pipeline
-      .v-align
-        .render-graph
-          .box
-            .heading Recalculate style
-          .box
-            .heading Layout
-            ul.render-words
-              .word width
-              .word height
-              .word padding
-              .word margin
-              .word display
-              .word etc
-          .box
-            .heading Paint
-            ul.render-words
-              .word color
-              .word border
-              .word box-shadow
-              .word outline
-              .word border-radius
-              .word etc
-          .box
-            .heading Composite layers
-            ul.render-words
-              .word transform
-              .word opacity
-
-        p.fragment Better chance to fit in one frame
-
-
-    section(data-slide-name="layout-thrashing")
-      h2 Layout thrashing
-      .v-align
-        blockquote.centered.fragment
-          | ”Layout Thrashing occurs when JavaScript violently writes, then reads, from the DOM, multiple times causing document reflows.”
-
-        ul.bullet-list.centered.fragment
-          li DOM-write puts DOM in <em>dirty</em> state
-          li DOM-read requires non-<em>dirty</em>
-
-    section(data-slide-name="layout-thrashing-2")
-      h2 Layout thrashing
-      .v-align
-        pre.code-box.centered
-          code.language-javascript  // Read
-            | var h1Size = element1.clientHeight;
-            | // Write (invalidates layout)
-            | element1.style.height = (h1Size * 2) + 'px';
-            | // Read (triggers layout)
-            | var h2Size = element2.clientHeight;
-            | // Write (invalidates layout)
-            | element2.style.height = (h2Size * 2) + 'px';
-
-    section(data-slide-name="layout-thrashing-2")
-      h2 Layout thrashing
-      .v-align
-        pre.code-box.centered
-          code.language-javascript
-            | // Organize reads together
-            | var h1Size = element1.clientHeight;
-            | var h2Size = element2.clientHeight;
-            | 
-            | // Organize writes together
-            | element1.style.height = (h1Size * 2) + 'px';
-            | element2.style.height = (h2Size * 2) + 'px';
-
-
-    section(data-slide-name="part2")
-      .v-align
-        h1 PART 2
-        h2 snabbt.js
-
-    section(data-slide-name="why-snabbt")
-      .v-align
-        h2 why snabbt.js?
-
-        p.fragment Famo.us, Velocity.js, GSAP
-        p.fragment Only allow things browsers can render cheaply
-        p.fragment Room for a lightweight library that is not a framework
-
-    section(data-slide-name="what-is-snabbt")
-      h2 what is snabbt.js?
-      .v-align
-        p.fragment Matrix multiplication library
-        .fragment
-          p +
-          p Tweener
-        .fragment
-          p + 
-          p Clean API
-
-    section(data-slide-name="what-is-snabbt-2")
-      h2 What is snabbt.js?
-      .v-align
-        p Transition elements between states*
-        p State* = transform + opacity
-        p
-          #intro-animation
-
-    section(data-slide-name="what-is-snabbt-2")
-      h2 Limitations
-      .v-align
-        p No unit conversions or relative values
-        p No arbitrary property animations, just transform + opacity
-        p Modern browsers only (IE10+) 
-
-    section
-      h2 Basic API
-      .v-align
-        pre.code-box.centered.fragment
-          code.language-javascript snabbt(element, animationConfiguration)
-
-        pre.code-box.centered.fragment
-          code.language-javascript snabbt(element, {
-            |  position: [100, 100, 0]
-            |})
-
-    section
-      .v-align
-        h2 Basic API - cont.
-        //h3 Animation configuration
-        //ul.bullet-list.centered
-          li position: [0, 0, 0]
-          li rotation: [0, 0, 0]
-          li scale: [0, 0]
-          li skew: [0, 0]
-          li opacity: [0, 0]
-          li duration: 500
-          li delay: 500
-          li easing: 'linear'
-        .flex
-          .col-50
-            pre.code-box.centered.fragment.small
-              code.language-javascript snabbt(element, {
-                |  position: [0, 0, 0],
-                |  rotation: [0, 0, 0],
-                |  rotationPost: [0, 0, 0],
-                |  scale: [0, 0],
-                |  scalePost: [0, 0],
-                |  skew: [0, 0],
-                |  opacity: 1,
-                |  duration: 500,
-                |  delay: 0,
-                |  easing: 'linear'
-                |});
-          .col-50
-            pre.code-box.centered.fragment.small
-              code.language-javascript snabbt(element, {
-                |  fromPosition: [0, 0, 0],
-                |  fromRotation: [0, 0, 0],
-                |  fromRotationPost: [0, 0, 0],
-                |  fromScale: [0, 0, 0],
-                |  fromScalePost: [0, 0, 0],
-                |  fromSkew: [0, 0, 0],
-                |  fromOpacity: 1
-                |});
-
-
-    section(data-slide-name="simple-examples")
-      h2 Simple examples
-        .flex
-          .col-50
-            pre.code-box.centered.small
-              code.language-javascript snabbt(element, {
-                |   position: [200, 0, 0]
-                | });
-            #example1.example-box
-
-            pre.code-box.centered.small
-              code.language-javascript snabbt(element, {
-                |   position: [200, 0, 0]
-                |   rotation: [0, 0, Math.PI]
-                | });
-            #example3.example-box
-
-          .col-50
-            pre.code-box.centered.small
-              code.language-javascript snabbt(element, {
-                |   rotation: [0, 0, Math.PI]
-                | });
-            #example2.example-box
-
-    section(data-slide-name="easings")
-      .v-align
-        h2 Easings
-        p <span id="ease" class="ease-word">ease</span> - <span id="ease-in" class="ease-word">easeIn</span> - <span id="ease-out" class="ease-word">easeOut</span>
-        p#spring-easing spring easing - Physics based spring model
-        p.fragment Easy to extend with own easings
-
-    //section(data-slide-name="spring")
-    //  .v-align
-    //    h2 Spring easing
-    //    pre.code-box.centered.small
-    //      code.language-javascript snabbt(element, {
-    //        |   position: [100, 0, 0]
-    //        |   easing: 'spring',
-    //        |   springConstant: 0.4,
-    //        |   springDeceleration: 0.8,
-    //        | });
-
-    //    p#spring-easing-example Spring
-
-    section(data-slide-name="chaining")
-      h2 Chaining
-      p Run animations in sequence
-      //.v-align
-      .flex
-        .col-50
-          pre.code-box.small.centered
-            code.language-javascript snabbt(balls, {
-              |   position: [300, 0, 0],
-              |   delay: function(i) {
-              |     return i * 200;
-              |   },
-              | }).snabbt({
-              |   position: [300, 300, 0],
-              | }).snabbt({
-              |   position: [0, 300, 0],
-              | }).snabbt({
-              |   position: [0, 0, 0],
-              | });
-
-        .col-50
-          #chaining
-            .ball
-            .ball
-            .ball
-            .ball
-            .ball
-
-    section(data-slide-name="multi-element-animations")
-      h2 Multi-element animations
-      .v-align
-        p Animate multiple elements independently with one snabbt-call
-        .flex.fragment
-          .col-50
-            pre.code-box.small
-              code.language-javascript snabbt(elements, {
-                |   position: [200, 0, 0],
-                |   rotationPost: function(i, total) {
-                |     return [0, 0, i/total * 2 * Math.PI];
-                |   }
-                | });
-
-          .col-50.relative
-            .multi-element
-              .ball
-              .ball
-              .ball
-              .ball
-              .ball
-              .ball
-              .ball
-              #multi-element-toggle.toggle-ball ★
-
-
-    section
-      h2 Manual mode
-
-      .v-align
-        p Control animations with user input instead of time
-        .flex
-          .col-50
-            pre.code-box.centered.small
-              code.language-javascript var animation = snabbt(element, {
-                |   position: [100, 0, 0],
-                |   manual: true
-                | });
-                | 
-                | animation.setValue(eventValue);
-                | 
-                | animation.rollback();
-                | // Or
-                | animation.finish();
-
-          .col-50
-            #flipper-drag.flip-container
-              #flipper-background.flipper-background Peek-a-boo!
-              #flipper.flipper
-                .flipper-front Drag to flip!
-                .flipper-back Flip me back!
-
-    section(data-slide-name="manual-demo")
-      h2 Manual mode
-
-      iframe(src="parallax.html", width="100%", style="height: 70vh", frameborder=0)
-
-
-    section(data-slide-name="freestyle")
-      h2 Freestyle mode
-
-      p Use matrix operations outside snabbt's tweener
-
-      #touch-area
-        #patch-container
-
-    section
-      .v-align
-        h1 Thank you!
-
-        p bower install snabbt.js
-        p npm install snabbt.js
-
-
+            code.language-javascript theList.map((item) => item.name);
 
     if develop
       each jsFile in jsLibFiles

@@ -8,6 +8,6 @@
   "dependencies": {
     "Skeleton-SCSS": "~1.0.12",
     "prism": "*",
-    "hammer.js": "~2.0.4"
+    "snabbt.js": "~0.5.8"
   }
 }
